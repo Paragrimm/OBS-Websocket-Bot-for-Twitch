@@ -15,8 +15,7 @@ Zunächst gehst du in OBS über Werkzeuge auf **WebSockets-Servereinstellungen**
 Der Port sollte standardmäßig **4444** sein, den kannst du auch so lassen wenn dein System diesen nicht schon belegt. Danach machst du einen Haken bei **Authentifizierung aktivieren** und vergibst ein Passwort und klickst auf **Okay**
 
 ### Initiale Installation des Bots
-Nachdem du dir das aktuellste [Release](https://github.com/derrobin154/OBS-Websocket-Bot-for-Twitch/releases) heruntergeladen und in einen Ordner entpackt hast, öffnest du zunächst die ```install.bat``` um die benötigten NPM Pakete zu installieren.
-Danach öffnest du die ``.env `` und trägst folgende Daten ein:
+Nachdem du dir das aktuellste [Release](https://github.com/derrobin154/OBS-Websocket-Bot-for-Twitch/releases) heruntergeladen und in einen Ordner entpackt hast, öffnest du zunächst die ```install.bat``` und gibst folgende Daten in der Kommandozeile ein:
 
 * ``KANALNAME`` ist der Name deines Twitch Channels
 * ``USERNAME`` ist der Name deines Twitch Accounts (meist der selbe wie der vom Kanal)
@@ -26,7 +25,9 @@ Danach öffnest du die ``.env `` und trägst folgende Daten ein:
 * ``OBS_PASSWORD`` ist das vorher festgelegte Passwort
 * ``OBS_ITEMCAMERA`` ist der Name der Kameraquelle (Wichtig: Die Quelle muss in jeder Szene gleich heißen. Darf in einer Szene die Kamera nicht verschiebbar sein, so musst du diese umbenennen)
 
-Sobald du alles eingetragen hast kannst du den Bot mittels der ``start.bat`` starten und im Streamchat dürfte dann stehen ``OBS Websocket Bot aktiv``
+Als letztes drückst du ENTER und er installiert die nötigen Abhängigkeiten, danach schließt sich das Fenster automatisch.
+
+Sobald das Kommandozeilenfenster geschlossen ist, kannst du mit der ``start.bat`` den Bot starten und im Streamchat dürfte dann stehen ``OBS Websocket Bot aktiv``
 
 ### Kamerapositionen festlegen
 Sollten die vorher festgelegten Kamerapositionen bei dir nicht richtig sein oder du generell eigene möchtest kannst du diese in der ``camerapos.json`` festlegen.
