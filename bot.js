@@ -52,12 +52,18 @@ client.on("message", (channel, context, message, self) => {
 				})
 				.then(() => {
 					isObsConnected = true;
+					return commandResolver.resolve(
+						client,
+						channel,
+						context,
+						message,
+						self
+					);
 				})
 				.catch(() => {
 					isObsConnected = false;
 				});
 		}
-		return commandResolver.resolve(client, channel, context, message, self);
 	}
 });
 
