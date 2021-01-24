@@ -22,8 +22,6 @@ const OBSWebSocketJS = require("obs-websocket-js");
 const obs = new OBSWebSocketJS();
 const fetch = require("node-fetch");
 
-let isObsConnected = false;
-
 client.connect();
 
 async function GetLatestReleaseInfo() {
@@ -57,7 +55,6 @@ obs.on("error", (err) => {
 });
 
 obs.on("Exiting", () => {
-	isObsConnected = false;
 	obs.disconnect();
 });
 
