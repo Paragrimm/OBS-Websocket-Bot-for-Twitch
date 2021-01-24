@@ -44,22 +44,7 @@ GetLatestReleaseInfo().then((data) => {
 client.on("message", (channel, context, message, self) => {
 	const prefix = "!";
 	if (message.substr(0, prefix.length) === prefix) {
-		if (!isObsConnected) {
-			obs
-				.connect({
-					address: `${process.env.OBS_IP}:${process.env.OBS_PORT}`,
-					password: process.env.OBS_PASSWORD,
-				})
-				.then(() => {
-					isObsConnected = true;
-				})
-				.catch(() => {
-					isObsConnected = false;
-				});
-		}
-		if (isObsConnected) {
-			return commandResolver.resolve(client, channel, context, message, self);
-		}
+		return commandResolver.resolve(client, channel, context, message, self);
 	}
 });
 
