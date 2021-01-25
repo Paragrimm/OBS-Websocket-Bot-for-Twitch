@@ -52,7 +52,8 @@ function TryToConnectToObs() {
 			})
 			.then(() => {
 				clearInterval(timer);
-			});
+			})
+			.catch(() => {});
 	}, 10000);
 }
 
