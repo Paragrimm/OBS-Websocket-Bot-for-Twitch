@@ -1,6 +1,6 @@
 const { obs } = require("../bot.js");
 
-exports.run = (client, message, args, context, channel, self) => {
+function run(client, message, args, context, channel, self) {
 	const camerapositions = require("../json/camerapos.json");
 	if (args.length === 0) return;
 	if (context.mod || context.badges["broadcaster"] === "1") {
@@ -41,4 +41,7 @@ exports.run = (client, message, args, context, channel, self) => {
 
 		return true;
 	}
-};
+}
+
+exports.run = run;
+module.exports = { camera: { run: run } };

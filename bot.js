@@ -21,11 +21,11 @@ const commandResolver = require("./functions/commandResolver.js");
 const OBSWebSocketJS = require("obs-websocket-js");
 const obs = new OBSWebSocketJS();
 const fetch = require("node-fetch");
-const io = require("socket.io-client").io(
-	`${process.env.STREAM_DESIGN_WS_IP}:${process.env.STREAM_DESIGN_WS_PORT}`
-);
+const io = require("socket.io-client");
 
-io.connect();
+const socket = io.connect(`http://${process.env.STREAM_DESIGN_WS_IP}:${process.env.STREAM_DESIGN_WS_PORT}`, {
+	reconnection: true,
+});
 client.connect();
 
 async function GetLatestReleaseInfo() {
@@ -53,7 +53,7 @@ function TryToConnectToObs() {
 			.then(() => {
 				clearInterval(timer);
 			})
-			.catch(() => {});
+			.catch(() => { });
 	}, 10000);
 }
 
@@ -78,4 +78,4 @@ obs.on("Exiting", () => {
 	TryToConnectToObs();
 });
 
-module.exports = { obs: obs, io: io };
+module.exports = { obs: obs, socket: socket };
