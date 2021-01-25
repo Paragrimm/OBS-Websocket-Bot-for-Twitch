@@ -78,4 +78,4 @@ obs.on("Exiting", () => {
 	TryToConnectToObs();
 });
 
-module.exports = { obs };
+module.exports = { obs: obs, io: io };
