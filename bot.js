@@ -21,7 +21,11 @@ const commandResolver = require("./functions/commandResolver.js");
 const OBSWebSocketJS = require("obs-websocket-js");
 const obs = new OBSWebSocketJS();
 const fetch = require("node-fetch");
+const io = require("socket.io-client").io(
+	`${process.env.STREAM_DESIGN_WS_IP}:${process.env.STREAM_DESIGN_WS_PORT}`
+);
 
+io.connect();
 client.connect();
 
 async function GetLatestReleaseInfo() {
@@ -39,6 +43,19 @@ GetLatestReleaseInfo().then((data) => {
 	}
 });
 
+function TryToConnectToObs() {
+	let timer = setInterval(() => {
+		obs
+			.connect({
+				address: `${process.env.OBS_IP}:${process.env.OBS_PORT}`,
+				password: process.env.OBS_PASSWORD,
+			})
+			.then(() => {
+				clearInterval(timer);
+			});
+	}, 10000);
+}
+
 client.on("message", (channel, context, message, self) => {
 	const prefix = "!";
 	if (message.substr(0, prefix.length) === prefix) {
@@ -49,6 +66,7 @@ client.on("message", (channel, context, message, self) => {
 client.on("connected", (addr, port) => {
 	console.log(`* Connected to ${addr}:${port}`);
 	console.log(`Verbindung mit dem Twitch Server hergestellt`);
+	TryToConnectToObs();
 });
 obs.on("error", (err) => {
 	console.error("Socket Error:", err);
@@ -56,6 +74,7 @@ obs.on("error", (err) => {
 
 obs.on("Exiting", () => {
 	obs.disconnect();
+	TryToConnectToObs();
 });
 
 module.exports = { obs };
