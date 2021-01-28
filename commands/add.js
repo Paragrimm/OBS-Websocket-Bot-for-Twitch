@@ -6,6 +6,6 @@ exports.run = (client, message, args, context, channel, self) => {
 
 	socket.emit("queueAdd", {
 		username: context.username,
-		value: args,
+		value: args.join(),
 	});
 };
