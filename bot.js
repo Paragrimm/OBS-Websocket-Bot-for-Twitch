@@ -23,7 +23,7 @@ const obs = new OBSWebSocketJS();
 const fetch = require("node-fetch");
 const io = require("socket.io-client");
 
-const socket = io.connect(`http://${process.env.STREAM_DESIGN_WS_IP}:${process.env.STREAM_DESIGN_WS_PORT}`, {
+const socket = io.connect(`${process.env.STREAM_DESIGN_WS_IP}:${process.env.STREAM_DESIGN_WS_PORT}`, {
 	reconnection: true,
 });
 client.connect();
